@@ -42,4 +42,4 @@ jobs:
           context: .
           file: bin/Dockerfile
           push: true
-          tags: ${{ $VERSION_PUBLISHED }}
+          tags: ${{ env.VERSION_PUBLISHED }}
