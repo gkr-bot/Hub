@@ -3,7 +3,7 @@ import re
 
 from setuptools import find_packages, setup
 
-project_name = "hub"
+project_name = "package-hub-test"
 
 
 this_directory = os.path.abspath(os.path.dirname(__file__))
