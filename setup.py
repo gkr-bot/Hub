@@ -18,7 +18,7 @@ with open(os.path.join(this_directory, "README.md"), encoding="utf-8") as f:
     long_description = f.read()
 
 
-init_file = os.path.join(project_name, "__init__.py")
+init_file = os.path.join("hub", "__init__.py")
 
 
 def get_property(prop):
