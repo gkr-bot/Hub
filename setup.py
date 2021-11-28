@@ -47,7 +47,7 @@ setup(
     setup_requires=[],
     dependency_links=[],
     project_urls={
-        "Documentation": "https://docs.activeloop.ai/",
-        "Source": "https://github.com/activeloopai/Hub",
+        "Documentation": "https://demo.ai/",
+        "Source": "https://github.com/gkr-bot/Hub",
     },
 )
