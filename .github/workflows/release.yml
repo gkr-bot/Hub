@@ -41,4 +41,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: gkrbot/package-hub-test:${{ VERSION_PUBLISHED }}
+          tags: gkrbot/package-hub-test:${{ $VERSION_PUBLISHED }}
