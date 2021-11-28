@@ -33,7 +33,7 @@ def get_property(prop):
 setup(
     name=project_name,
     version=get_property("__version__"),
-    description="Activeloop Hub",
+    description="demo",
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="activeloop.ai",
