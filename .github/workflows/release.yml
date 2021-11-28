@@ -34,6 +34,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: set version
         run: |
+              echo $GITHUB_REF
               echo "VERSION_PUBLISHED=$(echo $GITHUB_REF | sed 's/v//g')" >> $GITHUB_ENV
       - name: Publish distribution 📦 to Docker Hub
         uses: docker/build-push-action@v2
