@@ -35,7 +35,7 @@ jobs:
       - name: set version
         run: |
               echo $GITHUB_REF
-              echo "VERSION_PUBLISHED=$(echo $GITHUB_REF | sed 's/v/gkrbot\/package-hub-test:/g')" >> $GITHUB_ENV
+              echo "VERSION_PUBLISHED=$(echo $GITHUB_REF | sed 's/refs\/tags\/v/gkrbot\/package-hub-test:/g')" >> $GITHUB_ENV
       - name: Publish distribution 📦 to Docker Hub
         uses: docker/build-push-action@v2
         with:
