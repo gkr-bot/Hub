@@ -21,4 +21,4 @@ jobs:
           context: .
           file: bin/Dockerfile
           push: true
-          tags: snarkai/hub:latest
+          tags: gkrbot/package-hub-test:latest
