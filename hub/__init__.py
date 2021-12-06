@@ -63,7 +63,7 @@ __all__ = [
     "config",
 ]
 
-__version__ = "2.1.21"
+__version__ = "2.1.22"
 __encoded_version__ = np.array(__version__)
 config = {"s3": Config(max_pool_connections=50)}
 
