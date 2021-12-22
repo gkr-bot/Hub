@@ -33,6 +33,11 @@ jobs:
         uses: pypa/gh-action-pypi-publish@master
         with:
           password: ${{ secrets.PYPI_API_TOKEN }}
+      - name: Set Version as envar
+        run: |
+          echo "VERSION_ON_PYPI=$(echo $GITHUB_REF | sed 's/refs\/tags\/v//g')" >> $GITHUB_ENV
+          sed -i 's/REPLACE_VERSION/$VERSION_ON_PYPI/gI' conda/meta.yaml
+          cat conda/meta.yaml
       - name: publish-to-conda
         uses: fcakyon/conda-publish-action@v1.3
         with:
@@ -48,6 +53,7 @@ jobs:
         run: |
               echo $GITHUB_REF
               echo "VERSION_PUBLISHED=$(echo $GITHUB_REF | sed 's/refs\/tags\/v/gkrbot\/package-hub-test:/g')" >> $GITHUB_ENV
+              sed VERSION_PUBLISHED
       - name: Publish distribution 📦 to Docker Hub
         uses: docker/build-push-action@v2
         with:
