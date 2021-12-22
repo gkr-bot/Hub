@@ -35,7 +35,7 @@ jobs:
           password: ${{ secrets.PYPI_API_TOKEN }}
       - name: Set Version as envar
         run: |
-          echo "VERSION_ON_PYPI=$(echo $GITHUB_REF | sed 's/refs\/tags\/v//g')" >> $GITHUB_ENV
+          export VERSION_ON_PYPI=$(echo $GITHUB_REF | sed 's/refs\/tags\/v//g')
           until pip install --upgrade --force-reinstall --no-cache package-hub-test=="${VERSION_ON_PYPI}" && [[ "$(hub --version | awk '{print $2}')" == "${PUBLISHED_VERSION}" ]] && true || false
           do
             echo "Retrying again in 10 seconds..."
