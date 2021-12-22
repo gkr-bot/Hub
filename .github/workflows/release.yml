@@ -36,8 +36,14 @@ jobs:
       - name: Set Version as envar
         run: |
           echo "VERSION_ON_PYPI=$(echo $GITHUB_REF | sed 's/refs\/tags\/v//g')" >> $GITHUB_ENV
-          sed -i 's/REPLACE_VERSION/$VERSION_ON_PYPI/gI' conda/meta.yaml
-          cat conda/meta.yaml
+          until pip install --upgrade --force-reinstall --no-cache package-hub-test=="${VERSION_ON_PYPI}" && [[ "$(hub --version | awk '{print $2}')" == "${PUBLISHED_VERSION}" ]] && true || false
+          do
+            echo "Retrying again in 10 seconds..."
+            sleep 10
+          done
+          pip install grayskull
+          grayskull pypi package-hub-test
+          mv hub/meta.yaml conda/meta.yaml
       - name: publish-to-conda
         uses: fcakyon/conda-publish-action@v1.3
         with:
