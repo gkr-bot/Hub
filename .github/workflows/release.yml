@@ -43,7 +43,8 @@ jobs:
           done
           pip install grayskull
           grayskull pypi package-hub-test
-          mv hub/meta.yaml conda/meta.yaml
+          mv package-hub-test/meta.yaml conda/meta.yaml
+          sed -i 's/AddYourGitHubIdHere/gautamkrishnar/g' conda/meta.yaml          
       - name: publish-to-conda
         uses: fcakyon/conda-publish-action@v1.3
         with:
