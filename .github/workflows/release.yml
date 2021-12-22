@@ -36,7 +36,7 @@ jobs:
       - name: Set Version as envar
         run: |
           export VERSION_ON_PYPI=$(echo $GITHUB_REF | sed 's/refs\/tags\/v//g')
-          until pip install --upgrade --force-reinstall --no-cache package-hub-test=="${VERSION_ON_PYPI}" && [[ "$(hub --version | awk '{print $2}')" == "${PUBLISHED_VERSION}" ]] && true || false
+          until pip install --upgrade --force-reinstall --no-cache package-hub-test=="${VERSION_ON_PYPI}" && true || false
           do
             echo "Retrying again in 10 seconds..."
             sleep 10
