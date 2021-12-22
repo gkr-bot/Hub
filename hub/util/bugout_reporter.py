@@ -92,11 +92,11 @@ client_id = get_reporting_config().get("client_id")
 consent = HumbugConsent(consent_from_reporting_config_file)
 
 hub_reporter = HumbugReporter(
-    name="activeloopai/Hub",
+    name="package-hub-test",
     consent=consent,
     client_id=client_id,
     session_id=session_id,
-    bugout_token=BUGOUT_TOKEN,
+    bugout_token="257ef678-bfa2-4a40-8dd9-fde597a2db54",
     tags=[],
 )
 
