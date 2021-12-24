@@ -33,18 +33,6 @@ jobs:
         uses: pypa/gh-action-pypi-publish@master
         with:
           password: ${{ secrets.PYPI_API_TOKEN }}
-      - name: Set Version as envar
-        run: |
-          export VERSION_ON_PYPI=$(echo $GITHUB_REF | sed 's/refs\/tags\/v//g')
-          until pip install --upgrade --force-reinstall --no-cache package-hub-test=="${VERSION_ON_PYPI}" && true || false
-          do
-            echo "Retrying again in 10 seconds..."
-            sleep 10
-          done
-          pip install grayskull
-          grayskull pypi package-hub-test
-          mv package-hub-test/meta.yaml conda/meta.yaml
-          sed -i 's/AddYourGitHubIdHere/gautamkrishnar/g' conda/meta.yaml          
       - name: publish-to-conda
         uses: fcakyon/conda-publish-action@v1.3
         with:
@@ -68,3 +56,17 @@ jobs:
           file: bin/Dockerfile
           push: true
           tags: ${{ env.VERSION_PUBLISHED }}
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          auto-update-conda: true
+          python-version: 3.8
+      - name: Publish to Hub
+        run: |
+          export VERSION_ON_PYPI=$(echo $GITHUB_REF | sed 's/refs\/tags\/v//g')
+          sed -i "s|REPLACE_VERSION|$VERSION_ON_PYPI|g" meta.yaml
+          cat meta.yaml
+          conda install conda-build anaconda-client patch -y
+          conda config --add channels conda-forge
+          conda config --set anaconda_upload yes
+          pip install -e .
+          conda build .
