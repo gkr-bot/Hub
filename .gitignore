@@ -210,3 +210,5 @@ api_docs/
 
 # Production bugout token fie
 hub/util/bugout_token_production.py
+
+meta.yaml
