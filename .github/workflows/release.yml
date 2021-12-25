@@ -56,6 +56,7 @@ jobs:
       - name: Publish to Hub
         run: |
           export VERSION_ON_PYPI=$(echo $GITHUB_REF | sed 's/refs\/tags\/v//g')
+          cp meta.yaml.template meta.yaml
           sed -i "s|REPLACE_VERSION|$VERSION_ON_PYPI|g" meta.yaml
           cat meta.yaml
           conda install conda-build anaconda-client patch -y
