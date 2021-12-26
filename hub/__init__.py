@@ -66,7 +66,7 @@ __all__ = [
 
 __version__ = _version.get_versions()['version']
 
-__encoded_version__ = np.array(__version__")
+__encoded_version__ = np.array(__version__)
 config = {"s3": Config(max_pool_connections=50)}
 
 
