@@ -1,2 +1,3 @@
 include versioneer.py
 include hub/_version.py
+recursive-include hub/requirements
