@@ -1,9 +1,10 @@
 {% set name = "package-hub-test" %}
 {% set version = "REPLACE_VERSION" %}
 
+
 package:
-  name: "{{ name }}"
-  version: "{{ version }}"
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
   url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
@@ -19,77 +20,48 @@ build:
 
 requirements:
   host:
-    - azure-storage-blob
-    - boto3
-    - cachey
-    - click
-    - cloudpickle
-    - fsspec
-    - gcsfs
-    - lz4
-    - msgpack-python
-    - numpy
-    - outdated
-    - pathos
-    - pillow
     - pip
-    - psutil
     - python
-    - requests
-    - s3fs
-    - tqdm
-    - zarr
   run:
-    - azure-storage-blob
     - boto3
-    - cachey
-    - click
-    - cloudpickle
-    - fsspec
-    - gcsfs
+    - boto3-stubs
+    - google-auth ~=2.0.1
+    - google-auth-oauthlib ~=0.4.5
+    - google-cloud-storage ~=1.42.0
+    - hub-shm  # [py<38 and py>=36]
+    - humbug >=0.2.6
     - lz4
-    - msgpack-python
+    - miniaudio ~=1.44
+    - numcodecs ~=0.7.3
     - numpy
-    - outdated
     - pathos
-    - pillow
-    - psutil
+    - pickle5 >=0.0.11  # [py<38 and py>=36]
+    - pillow ==8.3.2
     - python
-    - requests
-    - s3fs
     - tqdm
-    - zarr
+    - types-click
+    - types-requests
+    - typing-extensions >=3.10.0.0
 
 test:
   imports:
     - hub
     - hub.api
-    - hub.cli
-    - hub.client
-    - hub.codec
-    - hub.collections
-    - hub.collections.dataset
-    - hub.collections.tensor
-    - hub.compute
-    - hub.schema
-    - hub.store
-    - hub.store.tests
   commands:
     - hub --help
     - hub-local --help
     - hub-dev --help
-  requires:
+   requires:
+    - pip
     - mock >=1.0.1
     - pytest
 
 about:
-  home: "https://github.com/activeloopai/Hub"
-  license: "Mozilla Public 2.0 (MPL 2.0)"
-  license_family: MOZILLA
-  license_file: 
-  summary: "Activeloop Hub"
-  doc_url: "https://docs.activeloop.ai/en/latest/"
-  dev_url: 
+  home: https://pypi.org/project/package-hub-test/
+  summary: demo
+  dev_url: https://github.com/gkr-bot/Hub
+  license: MPL-2.0
+  license_file: LICENSE
 
 extra:
   recipe-maintainers:
